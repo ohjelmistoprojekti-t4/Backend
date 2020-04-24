@@ -22,15 +22,7 @@ public class KyselyBackApplication {
 	@Bean
 	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, UserAnswersRepository uaRepo) {
 		return(args) -> {
-			oRepo.save(new Option("Kyl", "Ehkä", "Ei", null, null));
-			oRepo.save(new Option("Free write", null, null, null, null));
-			System.out.println("vaihtoehdot tökätty");
-			qRepo.save(new Question("Do you agree with this question?", 1, oRepo.findById((long) 1).get()));
-			qRepo.save(new Question("Is this checkbox, check all that are correct", 2, oRepo.findById((long) 1).get()));
-			qRepo.save(new Question("Hello? What is your name", 3, oRepo.findById((long) 2).get()));
-			System.out.println("kysymykset lisätty");
-			uaRepo.save(new UserAnswers("Testipena", 3, qRepo.findById((long) 5).get()));
-			System.out.println("vastaus lisätty");
+			
 			
 		};
 	}
