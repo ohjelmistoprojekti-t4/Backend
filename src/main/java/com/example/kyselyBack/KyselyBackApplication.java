@@ -9,6 +9,8 @@ import com.example.kyselyBack.domain.Option;
 import com.example.kyselyBack.domain.OptionRepository;
 import com.example.kyselyBack.domain.Question;
 import com.example.kyselyBack.domain.QuestionRepository;
+import com.example.kyselyBack.domain.Survey;
+import com.example.kyselyBack.domain.SurveyRepository;
 import com.example.kyselyBack.domain.UserAnswers;
 import com.example.kyselyBack.domain.UserAnswersRepository;
 
@@ -20,15 +22,17 @@ public class KyselyBackApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, UserAnswersRepository uaRepo) {
+	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, UserAnswersRepository uaRepo, SurveyRepository sRepo) {
 		return(args) -> {
 			
-			/*qRepo.deleteAll();
+			sRepo.deleteAll();
+			qRepo.deleteAll();
 			oRepo.deleteAll();
 			uaRepo.deleteAll();
 			
 			
-			qRepo.save(new Question("Mikä on nimesi?", 3));
+			/*sRepo.save(new Survey("Testisurvey1"));
+			qRepo.save(new Question("Mikä on nimesi?", 3, sRepo.findById((long) 1).get()));
 			oRepo.save(new Option("Vapaa kirjoitus", qRepo.findById((long) 1).get()));
 			oRepo.save(new Option("Haista vittu", qRepo.findById((long) 1).get()));
 			uaRepo.save(new UserAnswers("Pena", 3, qRepo.findById((long) 1).get()));

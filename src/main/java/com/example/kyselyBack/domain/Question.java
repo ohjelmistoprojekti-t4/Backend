@@ -22,6 +22,9 @@ public class Question {
 	private String question;
 	private int type;
 	
+	@ManyToOne
+	private Survey refQuestionSurvey;
+	
 	@OneToMany(mappedBy = "refAnswerQuestion")
 	private List<UserAnswers> answers;
     
@@ -69,6 +72,29 @@ public class Question {
 
 
 	
+
+
+
+
+	public Question(String question, int type, Survey refQuestionSurvey, List<UserAnswers> answers,
+			List<Option> options) {
+		super();
+		this.question = question;
+		this.type = type;
+		this.refQuestionSurvey = refQuestionSurvey;
+		this.answers = answers;
+		this.options = options;
+	}
+
+
+
+
+	public Question(String question, int type, Survey refQuestionSurvey) {
+		super();
+		this.question = question;
+		this.type = type;
+		this.refQuestionSurvey = refQuestionSurvey;
+	}
 
 
 
