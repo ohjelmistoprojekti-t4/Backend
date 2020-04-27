@@ -23,7 +23,16 @@ public class KyselyBackApplication {
 	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, UserAnswersRepository uaRepo) {
 		return(args) -> {
 			
+			qRepo.deleteAll();
+			oRepo.deleteAll();
+			uaRepo.deleteAll();
 			
+			
+			qRepo.save(new Question("Mikä on nimesi?", 3));
+			oRepo.save(new Option("Vapaa kirjoitus", qRepo.findById((long) 1).get()));
+			oRepo.save(new Option("Haista vittu", qRepo.findById((long) 1).get()));
+			uaRepo.save(new UserAnswers("Pena", 3, qRepo.findById((long) 1).get()));
+			uaRepo.save(new UserAnswers("Arska", 3, qRepo.findById((long) 1).get()));
 		};
 	}
 }

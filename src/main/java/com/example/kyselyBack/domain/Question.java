@@ -2,6 +2,7 @@ package com.example.kyselyBack.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,63 +22,125 @@ public class Question {
 	private String question;
 	private int type;
 	
-	@OneToMany(mappedBy = "question")
+	@OneToMany(mappedBy = "refAnswerQuestion")
 	private List<UserAnswers> answers;
     
-    @ManyToOne
-    @JoinColumn(name = "optionid")
-    private Option option;
+    @OneToMany(mappedBy = "refOptionQuestion")
+    private List<Option> options;
     
     
-
+    
 
 	public Question() {
     	super();
     }
-    
-    public Question(String question, int type, Option option) {
-    	super();
-    	this.question = question;
-    	this.type = type;
-    	this.option = option;
-    }
 
-	public int getType() {
-		return type;
-	}
 
-	public void setType(int type) {
+
+
+	public Question(String question, int type) {
+		super();
+		this.question = question;
 		this.type = type;
 	}
+
+
+
+
+	public Question(String question, int type, List<UserAnswers> answers, List<Option> options) {
+		super();
+		this.question = question;
+		this.type = type;
+		this.answers = answers;
+		this.options = options;
+	}
+
+
+
+
+	public Question(String question, int type, List<Option> options) {
+		super();
+		this.question = question;
+		this.type = type;
+		this.options = options;
+	}
+
+
+
+
+	
+
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
+
 
 	public String getQuestion() {
 		return question;
 	}
 
+
+
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
 
-	public Option getOption() {
-		return option;
+
+
+
+	public int getType() {
+		return type;
 	}
 
-	public void setOption(Option option) {
-		this.option = option;
+
+
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
-	@Override
-	public String toString() {
-		return "Question [id=" + id + ", question=" + question + ", options=" + option + "]";
+
+
+
+	public List<UserAnswers> getAnswers() {
+		return answers;
 	}
-    
+
+
+
+
+	public void setAnswers(List<UserAnswers> answers) {
+		this.answers = answers;
+	}
+
+
+
+
+	public List<Option> getOptions() {
+		return options;
+	}
+
+
+
+
+	public void setOptions(List<Option> options) {
+		this.options = options;
+	}
 	
+	
+    
+    
 }

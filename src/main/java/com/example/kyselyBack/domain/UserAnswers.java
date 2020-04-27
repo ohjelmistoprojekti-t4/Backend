@@ -26,18 +26,17 @@ public class UserAnswers {
 	private int type;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
-	private Question question;
+	private Question refAnswerQuestion;
 	
 	public UserAnswers() {
 		super();
 	}
-	
-	public UserAnswers(String textAnswer, int type, Question question) {
+
+	public UserAnswers(String textAnswer, int type, Question refAnswerQuestion) {
 		super();
 		this.textAnswer = textAnswer;
 		this.type = type;
-		this.question = question;
+		this.refAnswerQuestion = refAnswerQuestion;
 	}
 
 	public Long getUserAnswerId() {
@@ -64,13 +63,15 @@ public class UserAnswers {
 		this.type = type;
 	}
 
-	public Question getQuestion() {
-		return question;
+	public Question getRefAnswerQuestion() {
+		return refAnswerQuestion;
 	}
 
-	public void setQuestion(Question question) {
-		this.question = question;
+	public void setRefAnswerQuestion(Question refAnswerQuestion) {
+		this.refAnswerQuestion = refAnswerQuestion;
 	}
+	
+	
 	
 	
 	

@@ -35,6 +35,8 @@ public class QuestionController {
     @Autowired
     UserAnswersRepository uaRepo;
    
+    /*
+     
     @RequestMapping(value="/questionsApi", method = RequestMethod.GET)
     public @ResponseBody List<Question> questionsRest() {
         return (List<Question>) qRepo.findAll();
@@ -126,7 +128,7 @@ public class QuestionController {
         uaRepo.deleteById(id);
       }
       
-      
+      */
       
       
       
