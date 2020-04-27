@@ -25,18 +25,18 @@
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 		
-		<!-- H2 -->
+		<!-- H2 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency> 
+		</dependency> -->
 		
-		<!-- Postgres 
+		<!-- Postgres -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-		</dependency> -->
+		</dependency> 
 
 		<!-- Spring JPA  -->
 		<dependency>
