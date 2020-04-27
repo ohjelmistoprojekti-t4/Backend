@@ -31,12 +31,14 @@ public class KyselyBackApplication {
 			uaRepo.deleteAll();
 			
 			
-			/*sRepo.save(new Survey("Testisurvey1"));
+			sRepo.save(new Survey("Testisurvey1"));
+			System.out.println("1");
 			qRepo.save(new Question("Mikä on nimesi?", 3, sRepo.findById((long) 1).get()));
-			oRepo.save(new Option("Vapaa kirjoitus", qRepo.findById((long) 1).get()));
-			oRepo.save(new Option("Haista vittu", qRepo.findById((long) 1).get()));
-			uaRepo.save(new UserAnswers("Pena", 3, qRepo.findById((long) 1).get()));
-			uaRepo.save(new UserAnswers("Arska", 3, qRepo.findById((long) 1).get()));*/
+			System.out.println("2");
+			oRepo.save(new Option("Vapaa kirjoitus", qRepo.findById((long) 2).get()));
+			oRepo.save(new Option("Haista vittu", qRepo.findById((long) 2).get()));
+			uaRepo.save(new UserAnswers("Pena", 3, qRepo.findById((long) 2).get()));
+			uaRepo.save(new UserAnswers("Arska", 3, qRepo.findById((long) 2).get()));
 		};
 	}
 }

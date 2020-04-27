@@ -23,7 +23,7 @@ public class Question {
 	private int type;
 	
 	@ManyToOne
-	private Survey refQuestionSurvey;
+	private Survey survey;
 	
 	@OneToMany(mappedBy = "refAnswerQuestion")
 	private List<UserAnswers> answers;
@@ -81,7 +81,7 @@ public class Question {
 		super();
 		this.question = question;
 		this.type = type;
-		this.refQuestionSurvey = refQuestionSurvey;
+		this.survey = refQuestionSurvey;
 		this.answers = answers;
 		this.options = options;
 	}
@@ -93,7 +93,7 @@ public class Question {
 		super();
 		this.question = question;
 		this.type = type;
-		this.refQuestionSurvey = refQuestionSurvey;
+		this.survey = refQuestionSurvey;
 	}
 
 
