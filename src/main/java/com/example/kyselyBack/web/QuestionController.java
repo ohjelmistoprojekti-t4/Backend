@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.kyselyBack.domain.OptionRepository;
 import com.example.kyselyBack.domain.Question;
 import com.example.kyselyBack.domain.QuestionRepository;
-import com.example.kyselyBack.domain.UserAnswers;
+import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
 
 @RestController

@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class UserAnswers {
+public class UserAnswer {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -28,11 +28,11 @@ public class UserAnswers {
 	@ManyToOne
 	private Question refAnswerQuestion;
 	
-	public UserAnswers() {
+	public UserAnswer() {
 		super();
 	}
 
-	public UserAnswers(String textAnswer, int type, Question refAnswerQuestion) {
+	public UserAnswer(String textAnswer, int type, Question refAnswerQuestion) {
 		super();
 		this.textAnswer = textAnswer;
 		this.type = type;

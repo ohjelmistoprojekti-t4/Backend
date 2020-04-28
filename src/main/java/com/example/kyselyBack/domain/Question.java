@@ -26,7 +26,7 @@ public class Question {
 	private Survey survey;
 	
 	@OneToMany(mappedBy = "refAnswerQuestion")
-	private List<UserAnswers> answers;
+	private List<UserAnswer> answers;
     
     @OneToMany(mappedBy = "refOptionQuestion")
     private List<Option> options;
@@ -50,7 +50,7 @@ public class Question {
 
 
 
-	public Question(String question, int type, List<UserAnswers> answers, List<Option> options) {
+	public Question(String question, int type, List<UserAnswer> answers, List<Option> options) {
 		super();
 		this.question = question;
 		this.type = type;
@@ -76,7 +76,7 @@ public class Question {
 
 
 
-	public Question(String question, int type, Survey refQuestionSurvey, List<UserAnswers> answers,
+	public Question(String question, int type, Survey refQuestionSurvey, List<UserAnswer> answers,
 			List<Option> options) {
 		super();
 		this.question = question;
@@ -141,14 +141,14 @@ public class Question {
 
 
 
-	public List<UserAnswers> getAnswers() {
+	public List<UserAnswer> getAnswers() {
 		return answers;
 	}
 
 
 
 
-	public void setAnswers(List<UserAnswers> answers) {
+	public void setAnswers(List<UserAnswer> answers) {
 		this.answers = answers;
 	}
 
