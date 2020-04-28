@@ -25,8 +25,8 @@ public class KyselyBackApplication {
 	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, UserAnswersRepository uaRepo, SurveyRepository sRepo) {
 		return(args) -> {
 			
-			sRepo.deleteAll();
 			qRepo.deleteAll();
+			sRepo.deleteAll();
 			oRepo.deleteAll();
 			uaRepo.deleteAll();
 			
