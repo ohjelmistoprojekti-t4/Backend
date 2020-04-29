@@ -7,8 +7,6 @@ import javax.persistence.Id;
 
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 
 @Entity
 public class UserAnswer {
@@ -19,8 +17,7 @@ public class UserAnswer {
 	
 	private String textAnswer;
 	private int type;
-		
-	@JsonBackReference
+	
 	@ManyToOne
 	private Question refAnswerQuestion;
 	
