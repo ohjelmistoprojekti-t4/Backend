@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.ManyToOne;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
@@ -19,6 +18,9 @@ public class UserAnswer {
 	
 	private String textAnswer;
 	private int type;
+	
+	private int refAnswerId;
+	private String refQuestionString;
 	
 	@JsonBackReference
 	@ManyToOne
@@ -69,6 +71,14 @@ public class UserAnswer {
 	
 	public Long getRefQuestionId() {
 		return refAnswerQuestion.getId();
+	}
+
+	public String getRefQuestionString() {
+		return refAnswerQuestion.getQuestion();
+	}
+
+	public void setRefQuestionString(String refQuestionString) {
+		this.refQuestionString = refQuestionString;
 	}
 
 }
