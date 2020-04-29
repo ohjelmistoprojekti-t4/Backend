@@ -18,10 +18,7 @@ public class Option {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long optionid;
 	
-	
-	
 	private String option;
-	
 	
 	@ManyToOne
 	private Question refOptionQuestion;
@@ -61,14 +58,4 @@ public class Option {
 		this.refOptionQuestion = refOptionQuestion;
 	}
 
-	
-	
-	
-
-	
-
-	
-	
-	
-	
 }

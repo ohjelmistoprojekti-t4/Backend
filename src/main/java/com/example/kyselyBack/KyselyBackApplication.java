@@ -25,7 +25,7 @@ public class KyselyBackApplication {
 	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, UserAnswersRepository uaRepo, SurveyRepository sRepo) {
 		return(args) -> {
 			
-			/*sRepo.deleteAll();
+			sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
 			uaRepo.deleteAll();
@@ -48,7 +48,7 @@ public class KyselyBackApplication {
 			oRepo.save(new Option("3-4 kertaa kuukaudessa", qRepo.findById((long) 5).get()));
 			oRepo.save(new Option("Hyvin harvoin", qRepo.findById((long) 5).get()));
 			uaRepo.save(new UserAnswer("Pena", 3, qRepo.findById((long) 2).get()));
-			uaRepo.save(new UserAnswer("Arska", 3, qRepo.findById((long) 2).get()));*/
+			uaRepo.save(new UserAnswer("Arska", 3, qRepo.findById((long) 2).get()));
 		};
 	}
 }

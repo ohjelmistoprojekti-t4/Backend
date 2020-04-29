@@ -34,6 +34,11 @@ public class QuestionController {
     
     @Autowired
     UserAnswersRepository uaRepo;
+    
+    @RequestMapping(value = "/getUserAnswers")
+	List<UserAnswer> getUserAnswers() {	
+		return (List<UserAnswer>) uaRepo.findAll();
+	}
    
     /*
      
