@@ -26,6 +26,7 @@
 		</dependency>
 		
 		 
+		 <!-- H2 -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -33,11 +34,11 @@
 		</dependency> 
 		
 		
-		<!-- Postgres -->
+		<!-- Postgres 
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-		</dependency> 
+		</dependency> -->
 
 		<!-- Spring JPA  -->
 		<dependency>

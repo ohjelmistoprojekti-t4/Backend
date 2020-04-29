@@ -1,22 +1,14 @@
 package com.example.kyselyBack.domain;
 
-
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class UserAnswer {
@@ -27,10 +19,7 @@ public class UserAnswer {
 	
 	private String textAnswer;
 	private int type;
-	
-	private int refAnswerId;
-	private String RefQuestionString;
-	
+		
 	@JsonBackReference
 	@ManyToOne
 	private Question refAnswerQuestion;
@@ -81,14 +70,5 @@ public class UserAnswer {
 	public Long getRefQuestionId() {
 		return refAnswerQuestion.getId();
 	}
-	
-	public String getRefQuestionString() {
-		return refAnswerQuestion.getQuestion();
-	}
-
-	
-	
-	
-	
 
 }

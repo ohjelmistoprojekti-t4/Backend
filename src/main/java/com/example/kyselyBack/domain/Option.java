@@ -1,15 +1,12 @@
 package com.example.kyselyBack.domain;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Option {
@@ -18,10 +15,7 @@ public class Option {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long optionid;
 	
-	
-	
 	private String option;
-	
 	
 	@ManyToOne
 	private Question refOptionQuestion;
@@ -61,14 +55,4 @@ public class Option {
 		this.refOptionQuestion = refOptionQuestion;
 	}
 
-	
-	
-	
-
-	
-
-	
-	
-	
-	
 }
