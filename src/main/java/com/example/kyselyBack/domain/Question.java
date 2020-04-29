@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class Question {
@@ -25,6 +27,7 @@ public class Question {
 	@ManyToOne
 	private Survey survey;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "refAnswerQuestion")
 	private List<UserAnswer> answers;
     

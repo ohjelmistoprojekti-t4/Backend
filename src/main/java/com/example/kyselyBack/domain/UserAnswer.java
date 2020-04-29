@@ -15,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class UserAnswer {
 	
@@ -25,6 +28,10 @@ public class UserAnswer {
 	private String textAnswer;
 	private int type;
 	
+	private int refAnswerId;
+	private String RefQuestionString;
+	
+	@JsonBackReference
 	@ManyToOne
 	private Question refAnswerQuestion;
 	
@@ -32,7 +39,7 @@ public class UserAnswer {
 		super();
 	}
 
-	public UserAnswer(String textAnswer, int type, Question refAnswerQuestion) {
+	public UserAnswer(String textAnswer, int type,  Question refAnswerQuestion) {
 		super();
 		this.textAnswer = textAnswer;
 		this.type = type;
@@ -71,8 +78,14 @@ public class UserAnswer {
 		this.refAnswerQuestion = refAnswerQuestion;
 	}
 	
+	public Long getRefQuestionId() {
+		return refAnswerQuestion.getId();
+	}
 	
-	
+	public String getRefQuestionString() {
+		return refAnswerQuestion.getQuestion();
+	}
+
 	
 	
 	

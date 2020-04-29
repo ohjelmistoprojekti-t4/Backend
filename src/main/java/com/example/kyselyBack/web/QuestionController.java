@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,8 @@ import com.example.kyselyBack.domain.QuestionRepository;
 import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
 
-@RestController
+@Controller
+@ResponseBody
 public class QuestionController {
  
    
@@ -35,6 +37,12 @@ public class QuestionController {
     @Autowired
     UserAnswersRepository uaRepo;
    
+    @RequestMapping(value = "/getUserAnswers")
+	List<UserAnswer> getUserAnswers() {	
+		return (List<UserAnswer>) uaRepo.findAll();
+	} 
+    
+    
     /*
      
     @RequestMapping(value="/questionsApi", method = RequestMethod.GET)
