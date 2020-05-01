@@ -17,7 +17,7 @@ public class Survey {
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "survey")
+	@OneToMany(mappedBy = "refQuestionSurvey")
 	private List<Question> questions;
 	
 	public Survey() {
