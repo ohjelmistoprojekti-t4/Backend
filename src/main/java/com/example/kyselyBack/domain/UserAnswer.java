@@ -2,18 +2,13 @@ package com.example.kyselyBack.domain;
 
 
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -30,6 +25,9 @@ public class UserAnswer {
 	@JsonBackReference
 	@ManyToOne
 	private Question refAnswerQuestion;
+	
+	@OneToMany(mappedBy = "answerId")
+	private List<AnswerSet> answerSet;
 	
 	private int refAnswerId;
 	private String refQuestionString;
