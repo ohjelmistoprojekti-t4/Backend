@@ -20,6 +20,9 @@ public class Survey {
 	@OneToMany(mappedBy = "refQuestionSurvey")
 	private List<Question> questions;
 	
+	@OneToMany(mappedBy = "survey")
+	private List<UniqueUserSession> uniqueUser;
+	
 	public Survey() {
 		super();
 	}
@@ -60,7 +63,13 @@ public class Survey {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-	
-	
+
+	public List<UniqueUserSession> getUniqueUser() {
+		return uniqueUser;
+	}
+
+	public void setUniqueUser(List<UniqueUserSession> uniqueUser) {
+		this.uniqueUser = uniqueUser;
+	}
 	
 }
