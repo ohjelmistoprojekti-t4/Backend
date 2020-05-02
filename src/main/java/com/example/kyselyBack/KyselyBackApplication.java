@@ -35,7 +35,7 @@ public class KyselyBackApplication {
 			oRepo.deleteAll();
 			qRepo.deleteAll();
 			uaRepo.deleteAll();
-			//asRepo.deleteAll();*/
+			//asRepo.deleteAll();
 			
 
 			
@@ -60,7 +60,7 @@ public class KyselyBackApplication {
 			//asRepo.save(new AnswerSet(uaRepo.findById((long) 15).get()));
 			//asRepo.save(new AnswerSet(uaRepo.findById((long) 16).get()));
 			//uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 17).get()));
-			
+			*/
 		};
 	}
 }
