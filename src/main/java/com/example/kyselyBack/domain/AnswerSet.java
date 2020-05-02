@@ -1,10 +1,13 @@
 package com.example.kyselyBack.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class AnswerSet {
@@ -15,6 +18,9 @@ public class AnswerSet {
 	
 	@ManyToOne
 	private UserAnswer answerId;
+	
+	@OneToMany(mappedBy = "answerSet")
+	private List<UniqueUserSession> uniqueUser;
 	
 	public AnswerSet() {
 		super();
@@ -40,5 +46,13 @@ public class AnswerSet {
 
 	public void setAnswerId(UserAnswer answerId) {
 		this.answerId = answerId;
+	}
+
+	public List<UniqueUserSession> getUniqueUser() {
+		return uniqueUser;
+	}
+
+	public void setUniqueUser(List<UniqueUserSession> uniqueUser) {
+		this.uniqueUser = uniqueUser;
 	}
 }

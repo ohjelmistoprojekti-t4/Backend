@@ -13,6 +13,8 @@ import com.example.kyselyBack.domain.Question;
 import com.example.kyselyBack.domain.QuestionRepository;
 import com.example.kyselyBack.domain.Survey;
 import com.example.kyselyBack.domain.SurveyRepository;
+import com.example.kyselyBack.domain.UniqueUserSession;
+import com.example.kyselyBack.domain.UniqueUserSessionRepository;
 import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
 
@@ -24,16 +26,18 @@ public class KyselyBackApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
-			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo) {
+	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo,
+			UserAnswersRepository uaRepo, SurveyRepository sRepo , AnswerSetRepository asRepo,
+			UniqueUserSessionRepository uuRepo) {
 		return(args) -> {
-			
-			/*sRepo.deleteAll();
+			/*
+			sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
 			uaRepo.deleteAll();
 			asRepo.deleteAll();
 			
+
 			
 			sRepo.save(new Survey("Testisurvey1"));
 			System.out.println("1");
@@ -56,6 +60,9 @@ public class KyselyBackApplication {
 			asRepo.save(new AnswerSet(uaRepo.findById((long) 15).get()));
 			asRepo.save(new AnswerSet(uaRepo.findById((long) 16).get()));
 			uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 31).get()));*/
+			//asRepo.save(new AnswerSet(uaRepo.findById((long) 15).get()));
+			//asRepo.save(new AnswerSet(uaRepo.findById((long) 16).get()));
+			//uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 17).get()));
 		};
 	}
 }
