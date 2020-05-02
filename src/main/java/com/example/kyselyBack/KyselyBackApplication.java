@@ -31,12 +31,12 @@ public class KyselyBackApplication {
 			UserAnswersRepository uaRepo, SurveyRepository sRepo) {
 		return(args) -> {
 			
-			/*sRepo.deleteAll();
+			sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
-			uaRepo.deleteAll();*/
+			uaRepo.deleteAll();
 			//asRepo.deleteAll();
-			/*
+			
 
 			
 			sRepo.save(new Survey("Testisurvey1"));
@@ -60,7 +60,7 @@ public class KyselyBackApplication {
 			//asRepo.save(new AnswerSet(uaRepo.findById((long) 15).get()));
 			//asRepo.save(new AnswerSet(uaRepo.findById((long) 16).get()));
 			//uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 17).get()));
-			*/
+			
 		};
 	}
 }
