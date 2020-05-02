@@ -1,28 +1,30 @@
 package com.example.kyselyBack.web;
 
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.json.*;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.example.kyselyBack.domain.Option;
 import com.example.kyselyBack.domain.OptionRepository;
 import com.example.kyselyBack.domain.Question;
 import com.example.kyselyBack.domain.QuestionRepository;
+import com.example.kyselyBack.domain.SurveyRepository;
 import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
 
-@RestController
+@Controller
+@ResponseBody
 public class QuestionController {
  
    
@@ -35,11 +37,39 @@ public class QuestionController {
     @Autowired
     UserAnswersRepository uaRepo;
     
+    @Autowired
+    SurveyRepository sRepo;
+    
+    
+    
+    
+    
+    @RequestMapping(value="/addQuestion", method = RequestMethod.POST)
+    Question newQuestion(@RequestBody String jsonString) {
+    	
+    	Question q = new Question();
+    	JSONObject obj = new JSONObject(jsonString);
+    	
+    	q.setQuestion(obj.getString("question"));
+		q.setType(obj.getInt("type"));
+		q.setSurvey(sRepo.findOneById(obj.getLong("surveyId")));
+    	qRepo.save(q);
+		
+    	if (obj.getInt("type") != 3) {
+    		JSONArray a = obj.getJSONArray("options");
+    		for (int i = 0; i < a.length(); i++) {
+    			oRepo.save(new Option(a.getJSONObject(i).getString("option"), qRepo.findOneByQuestion(obj.getString("question"))));
+    		}
+    	}
+  	return q;
+    }						
+   
     @RequestMapping(value = "/getUserAnswers")
 	List<UserAnswer> getUserAnswers() {	
 		return (List<UserAnswer>) uaRepo.findAll();
-	}
-   
+	} 
+    
+    
     /*
      
     @RequestMapping(value="/questionsApi", method = RequestMethod.GET)

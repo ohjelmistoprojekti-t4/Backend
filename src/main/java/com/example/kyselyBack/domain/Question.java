@@ -2,15 +2,13 @@ package com.example.kyselyBack.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 
 
 @Entity
@@ -23,7 +21,7 @@ public class Question {
 	private int type;
 	
 	@ManyToOne
-	private Survey survey;
+	private Survey refQuestionSurvey;
 	
 	@OneToMany(mappedBy = "refAnswerQuestion")
 	private List<UserAnswer> answers;
@@ -40,6 +38,7 @@ public class Question {
 		this.question = question;
 		this.type = type;
 	}
+
 
 	public Question(String question, int type, List<UserAnswer> answers, List<Option> options) {
 		super();
@@ -61,7 +60,7 @@ public class Question {
 		super();
 		this.question = question;
 		this.type = type;
-		this.survey = refQuestionSurvey;
+		this.refQuestionSurvey = refQuestionSurvey;
 		this.answers = answers;
 		this.options = options;
 	}
@@ -70,23 +69,31 @@ public class Question {
 		super();
 		this.question = question;
 		this.type = type;
-		this.survey = refQuestionSurvey;
+		this.refQuestionSurvey = refQuestionSurvey;
 	}
+
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getQuestion() {
 		return question;
 	}
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
 	public int getType() {
 		return type;
 	}
+	
+
 	public void setType(int type) {
 		this.type = type;
 	}
@@ -106,4 +113,14 @@ public class Question {
 	public void setOptions(List<Option> options) {
 		this.options = options;
 	}
+
+	public Survey getSurvey() {
+		return refQuestionSurvey;
+	}
+
+	public void setSurvey(Survey survey) {
+		this.refQuestionSurvey = survey;
+	}
+	
+
 }
