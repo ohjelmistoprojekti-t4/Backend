@@ -2,15 +2,13 @@ package com.example.kyselyBack.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 
 
 @Entity
@@ -40,6 +38,7 @@ public class Question {
 		this.question = question;
 		this.type = type;
 	}
+
 
 	public Question(String question, int type, List<UserAnswer> answers, List<Option> options) {
 		super();
@@ -72,21 +71,29 @@ public class Question {
 		this.type = type;
 		this.refQuestionSurvey = refQuestionSurvey;
 	}
+
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getQuestion() {
 		return question;
 	}
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
 	public int getType() {
 		return type;
 	}
+	
+
 	public void setType(int type) {
 		this.type = type;
 	}
@@ -115,5 +122,5 @@ public class Question {
 		this.refQuestionSurvey = survey;
 	}
 	
-	
+
 }

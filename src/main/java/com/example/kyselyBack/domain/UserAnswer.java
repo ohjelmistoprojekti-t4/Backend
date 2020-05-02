@@ -1,16 +1,24 @@
 package com.example.kyselyBack.domain;
 
 
+
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
+import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 
 @Entity
 public class UserAnswer {
@@ -22,6 +30,11 @@ public class UserAnswer {
 	private String textAnswer;
 	private int type;
 	
+
+	private int refAnswerId;
+	private String refQuestionString;
+	
+
 	@JsonBackReference
 	@ManyToOne
 	private Question refAnswerQuestion;
@@ -29,14 +42,13 @@ public class UserAnswer {
 	@OneToMany(mappedBy = "answerId")
 	private List<AnswerSet> answerSet;
 	
-	private int refAnswerId;
-	private String refQuestionString;
+
 	
 	public UserAnswer() {
 		super();
 	}
 
-	public UserAnswer(String textAnswer, int type, Question refAnswerQuestion) {
+	public UserAnswer(String textAnswer, int type,  Question refAnswerQuestion) {
 		super();
 		this.textAnswer = textAnswer;
 		this.type = type;
@@ -71,15 +83,24 @@ public class UserAnswer {
 		return refAnswerQuestion;
 	}
 	
-	public Long getRefQuestionId() {
-		return refAnswerQuestion.getId();
-	}
+	
 
 	public void setRefAnswerQuestion(Question refAnswerQuestion) {
 		this.refAnswerQuestion = refAnswerQuestion;
 	}
 	
+
+	public Long getRefQuestionId() {
+		return refAnswerQuestion.getId();
+	}
+
 	public String getRefQuestionString() {
 		return refAnswerQuestion.getQuestion();
 	}
+
+	public void setRefQuestionString(String refQuestionString) {
+		this.refQuestionString = refQuestionString;
+	}
+
+
 }

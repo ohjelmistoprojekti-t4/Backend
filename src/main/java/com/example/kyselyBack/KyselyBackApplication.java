@@ -22,17 +22,17 @@ public class KyselyBackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KyselyBackApplication.class, args);
 	}
-	
+	/*
 	@Bean
 	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo) {
 		return(args) -> {
 			
-			/*sRepo.deleteAll();
+			sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
 			uaRepo.deleteAll();
-			asRepo.deleteAll();*/
+			asRepo.deleteAll();
 			
 			
 			sRepo.save(new Survey("Testisurvey1"));
@@ -54,6 +54,7 @@ public class KyselyBackApplication {
 			uaRepo.save(new UserAnswer("Pena", 3, qRepo.findById((long) 2).get()));
 			uaRepo.save(new UserAnswer("Arska", 3, qRepo.findById((long) 2).get()));
 			asRepo.save(new AnswerSet(uaRepo.findById((long) 15).get()));
+
 		};
-	}
+	}*/
 }
