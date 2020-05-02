@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.kyselyBack.domain.AnswerSet;
+import com.example.kyselyBack.domain.AnswerSetRepository;
 import com.example.kyselyBack.domain.Option;
 import com.example.kyselyBack.domain.OptionRepository;
 import com.example.kyselyBack.domain.Question;
@@ -22,13 +24,15 @@ public class KyselyBackApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, UserAnswersRepository uaRepo, SurveyRepository sRepo) {
+	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
+			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo) {
 		return(args) -> {
 			
-			sRepo.deleteAll();
+			/*sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
 			uaRepo.deleteAll();
+			asRepo.deleteAll();*/
 			
 			
 			sRepo.save(new Survey("Testisurvey1"));
@@ -49,6 +53,7 @@ public class KyselyBackApplication {
 			oRepo.save(new Option("Hyvin harvoin", qRepo.findById((long) 5).get()));
 			uaRepo.save(new UserAnswer("Pena", 3, qRepo.findById((long) 2).get()));
 			uaRepo.save(new UserAnswer("Arska", 3, qRepo.findById((long) 2).get()));
+			asRepo.save(new AnswerSet(uaRepo.findById((long) 15).get()));
 		};
 	}
 }
