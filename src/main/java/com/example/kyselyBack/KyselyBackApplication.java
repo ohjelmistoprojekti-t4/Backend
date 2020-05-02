@@ -30,12 +30,12 @@ public class KyselyBackApplication {
 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo) {
 		return(args) -> {
-			
+			/*
 			sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
 			uaRepo.deleteAll();
-			//asRepo.deleteAll();
+			//asRepo.deleteAll();*/
 			
 
 			
