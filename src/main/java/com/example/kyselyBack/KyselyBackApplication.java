@@ -28,8 +28,10 @@ public class KyselyBackApplication {
 	}
 	
 	@Bean
+
 	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, UniqueUserSessionRepository uuRepo) {
+
 
 		return(args) -> {
 			
@@ -67,6 +69,7 @@ public class KyselyBackApplication {
 			uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 15).get()));
 
 			*/
+
 		};
 	}
 }
