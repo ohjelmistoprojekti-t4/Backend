@@ -16,8 +16,10 @@ public class AnswerSet {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long answerSetId;
 	
-	@ManyToOne
-	private UserAnswer answerId;
+	
+	
+	@OneToMany(mappedBy = "refAnswerAnswerSet")
+	private List<UserAnswer> userAnswers;
 	
 	@OneToMany(mappedBy = "answerSet")
 	private List<UniqueUserSession> uniqueUser;
@@ -26,10 +28,22 @@ public class AnswerSet {
 		super();
 	}
 	
-	public AnswerSet(UserAnswer answerId) {
+	
+
+	public AnswerSet(List<UserAnswer> userAnswers) {
 		super();
-		this.answerId = answerId;
+		this.userAnswers = userAnswers;
 	}
+
+
+
+	public AnswerSet(List<UserAnswer> userAnswers, List<UniqueUserSession> uniqueUser) {
+		super();
+		this.userAnswers = userAnswers;
+		this.uniqueUser = uniqueUser;
+	}
+
+
 
 
 	public Long getAnswerSetId() {
@@ -40,13 +54,9 @@ public class AnswerSet {
 		this.answerSetId = answerSetId;
 	}
 
-	public UserAnswer getAnswerId() {
-		return answerId;
-	}
+	
 
-	public void setAnswerId(UserAnswer answerId) {
-		this.answerId = answerId;
-	}
+	
 
 	public List<UniqueUserSession> getUniqueUser() {
 		return uniqueUser;
@@ -55,4 +65,18 @@ public class AnswerSet {
 	public void setUniqueUser(List<UniqueUserSession> uniqueUser) {
 		this.uniqueUser = uniqueUser;
 	}
+
+
+
+	public List<UserAnswer> getUserAnswers() {
+		return userAnswers;
+	}
+
+
+
+	public void setUserAnswers(List<UserAnswer> userAnswers) {
+		this.userAnswers = userAnswers;
+	}
+	
+	
 }
