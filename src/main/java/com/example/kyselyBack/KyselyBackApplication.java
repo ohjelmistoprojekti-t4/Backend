@@ -43,7 +43,7 @@ public class KyselyBackApplication {
 			
 
 			
-			sRepo.save(new Survey("Testisurvey1"));
+			/*sRepo.save(new Survey("Testisurvey1"));
 			System.out.println("1");
 			qRepo.save(new Question("Mikä on nimesi?", 3, sRepo.findById((long) 1).get()));
 			qRepo.save(new Question("Valitse oikeat vaihtoehdot", 2, sRepo.findById((long) 1).get()));
@@ -66,7 +66,7 @@ public class KyselyBackApplication {
 			
 			uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 15).get()));
 
-			
+			*/
 		};
 	}
 }
