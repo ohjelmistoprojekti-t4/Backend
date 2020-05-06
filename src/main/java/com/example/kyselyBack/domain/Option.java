@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Option {
 	
@@ -24,6 +26,7 @@ public class Option {
 	private Question refOptionQuestion;
 	
 	@OneToMany(mappedBy = "refAnswerOption")
+	@JsonBackReference(value="user-answers")
 	private List<UserAnswer> answers;
 
 
