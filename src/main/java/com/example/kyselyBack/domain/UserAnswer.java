@@ -44,9 +44,11 @@ public class UserAnswer {
 	@ManyToOne
 	private Question refAnswerQuestion;
 	
+	@JsonBackReference
 	@ManyToOne
 	private Option refAnswerOption;
 	
+	@JsonBackReference
 	@ManyToOne
 	private AnswerSet refAnswerAnswerSet;
 	

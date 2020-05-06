@@ -8,6 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
+
+import org.springframework.context.annotation.Configuration;
+
+import com.example.kyselyBack.domain.QuestionRepository;
 
 
 
@@ -19,6 +24,8 @@ public class Question {
     private Long id;
 	private String question;
 	private int type;
+	
+	
 	
 	@ManyToOne
 	private Survey refQuestionSurvey;
@@ -37,6 +44,7 @@ public class Question {
 		super();
 		this.question = question;
 		this.type = type;
+		
 	}
 
 
@@ -46,6 +54,7 @@ public class Question {
 		this.type = type;
 		this.answers = answers;
 		this.options = options;
+		
 	}
 
 	public Question(String question, int type, List<Option> options) {
@@ -53,6 +62,7 @@ public class Question {
 		this.question = question;
 		this.type = type;
 		this.options = options;
+		
 	}
 
 	public Question(String question, int type, Survey refQuestionSurvey, List<UserAnswer> answers,
@@ -63,6 +73,7 @@ public class Question {
 		this.refQuestionSurvey = refQuestionSurvey;
 		this.answers = answers;
 		this.options = options;
+		
 	}
 
 	public Question(String question, int type, Survey refQuestionSurvey) {
@@ -70,8 +81,17 @@ public class Question {
 		this.question = question;
 		this.type = type;
 		this.refQuestionSurvey = refQuestionSurvey;
+		
+	}
+	
+
+	public Survey getRefQuestionSurvey() {
+		return refQuestionSurvey;
 	}
 
+	public void setRefQuestionSurvey(Survey refQuestionSurvey) {
+		this.refQuestionSurvey = refQuestionSurvey;
+	}
 
 	public Long getId() {
 		return id;
@@ -121,6 +141,6 @@ public class Question {
 	public void setSurvey(Survey survey) {
 		this.refQuestionSurvey = survey;
 	}
-	
 
 }
+
