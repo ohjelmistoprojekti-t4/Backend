@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class AnswerSet {
 	
@@ -19,7 +21,9 @@ public class AnswerSet {
 	
 	
 	@OneToMany(mappedBy = "refAnswerAnswerSet")
+	@JsonBackReference(value="user-answers")
 	private List<UserAnswer> userAnswers;
+	
 	
 	@OneToMany(mappedBy = "answerSet")
 	private List<UniqueUserSession> uniqueUser;

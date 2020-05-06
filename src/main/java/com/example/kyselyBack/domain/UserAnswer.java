@@ -40,15 +40,15 @@ public class UserAnswer {
 	private int refAnswerSetId;
 	
 
-	@JsonBackReference
+	
 	@ManyToOne
 	private Question refAnswerQuestion;
 	
-	@JsonBackReference
+	
 	@ManyToOne
 	private Option refAnswerOption;
 	
-	@JsonBackReference
+	
 	@ManyToOne
 	private AnswerSet refAnswerAnswerSet;
 	

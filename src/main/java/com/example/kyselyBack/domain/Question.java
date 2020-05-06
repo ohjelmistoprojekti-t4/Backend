@@ -13,6 +13,7 @@ import javax.persistence.PostPersist;
 import org.springframework.context.annotation.Configuration;
 
 import com.example.kyselyBack.domain.QuestionRepository;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 
@@ -31,6 +32,7 @@ public class Question {
 	private Survey refQuestionSurvey;
 	
 	@OneToMany(mappedBy = "refAnswerQuestion")
+	@JsonBackReference(value="user-answers")
 	private List<UserAnswer> answers;
     
     @OneToMany(mappedBy = "refOptionQuestion")
