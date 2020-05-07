@@ -32,7 +32,6 @@ public class Question {
 	private Survey refQuestionSurvey;
 	
 	@OneToMany(mappedBy = "refAnswerQuestion")
-	@JsonBackReference(value="user-answers")
 	private List<UserAnswer> answers;
     
     @OneToMany(mappedBy = "refOptionQuestion")

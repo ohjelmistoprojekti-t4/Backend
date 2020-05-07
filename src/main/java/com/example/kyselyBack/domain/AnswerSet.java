@@ -21,7 +21,6 @@ public class AnswerSet {
 	
 	
 	@OneToMany(mappedBy = "refAnswerAnswerSet")
-	@JsonBackReference(value="user-answers")
 	private List<UserAnswer> userAnswers;
 	
 	

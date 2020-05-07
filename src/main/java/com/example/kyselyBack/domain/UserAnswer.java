@@ -42,14 +42,17 @@ public class UserAnswer {
 
 	
 	@ManyToOne
+	@JsonBackReference(value="answer-question")
 	private Question refAnswerQuestion;
 	
 	
 	@ManyToOne
+	@JsonBackReference(value="answer-option")
 	private Option refAnswerOption;
 	
 	
 	@ManyToOne
+	@JsonBackReference(value="answer-set")
 	private AnswerSet refAnswerAnswerSet;
 	
 	

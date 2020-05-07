@@ -26,7 +26,6 @@ public class Option {
 	private Question refOptionQuestion;
 	
 	@OneToMany(mappedBy = "refAnswerOption")
-	@JsonBackReference(value="user-answers")
 	private List<UserAnswer> answers;
 
 
