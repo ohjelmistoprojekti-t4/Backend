@@ -4,6 +4,7 @@ package com.example.kyselyBack.domain;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ public class Option {
 	
 	private String option;
 	
+	@JsonBackReference
 	@ManyToOne
 	private Question refOptionQuestion;
 	
