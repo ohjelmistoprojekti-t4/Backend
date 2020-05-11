@@ -2,7 +2,9 @@ package com.example.kyselyBack.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,16 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import com.example.kyselyBack.domain.QuestionRepository;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
-
 @Entity
 public class Question {
-
+	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -27,14 +29,14 @@ public class Question {
 	private int type;
 	
 	
-	
+	@JsonBackReference
 	@ManyToOne
 	private Survey refQuestionSurvey;
 	
-	@OneToMany(mappedBy = "refAnswerQuestion")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "refAnswerQuestion")
 	private List<UserAnswer> answers;
     
-    @OneToMany(mappedBy = "refOptionQuestion")
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "refOptionQuestion")
     private List<Option> options;
     
 	public Question() {
