@@ -10,6 +10,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,10 +43,6 @@ public class QuestionController {
     @Autowired
     SurveyRepository sRepo;
     
-    
-    
-    
-    
     @RequestMapping(value="/addQuestion", method = RequestMethod.POST)
     Question newQuestion(@RequestBody String jsonString) {
     	
@@ -62,21 +61,38 @@ public class QuestionController {
     		}
     	}
   	return q;
-    }						
+    }
+    
+    @PutMapping("/putQuestion/{id}")
+    public Question replaceQuestion(@RequestBody Question replaceQuestion, @PathVariable Long id) {
+    	return qRepo.findById(id)
+    			.map(q -> {
+    				q.setQuestion(replaceQuestion.getQuestion());
+    				q.setOptions(replaceQuestion.getOptions());
+    				q.setType(replaceQuestion.getType());
+    				q.setSurvey(replaceQuestion.getSurvey());
+    				return qRepo.save(replaceQuestion);
+    			})
+    			.orElseGet(() -> {
+    				replaceQuestion.setId(id);
+    				return qRepo.save(replaceQuestion);
+    			});
+    }
    
     @RequestMapping(value = "/getUserAnswers")
 	List<UserAnswer> getUserAnswers() {	
 		return (List<UserAnswer>) uaRepo.findAll();
-	} 
+	}
     
     
-    /*
+    
      
-    @RequestMapping(value="/questionsApi", method = RequestMethod.GET)
+    @RequestMapping(value="/questions", method = RequestMethod.GET)
     public @ResponseBody List<Question> questionsRest() {
         return (List<Question>) qRepo.findAll();
     }
-   
+    
+   /*
     @RequestMapping(value="/questionsApi/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("id") Long id) {
         return qRepo.findById(id);
@@ -164,7 +180,5 @@ public class QuestionController {
       }
       
       */
-      
-      
-      
+
 }

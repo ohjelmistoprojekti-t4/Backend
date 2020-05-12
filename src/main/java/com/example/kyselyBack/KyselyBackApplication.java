@@ -28,20 +28,20 @@ public class KyselyBackApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
 
-			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, UniqueUserSessionRepository uuRepo) {
+	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
+			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, 
+			UniqueUserSessionRepository uuRepo) {
+
 		return(args) -> {
 			
-			sRepo.deleteAll();
+			/*sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
 			uaRepo.deleteAll();
 			asRepo.deleteAll();
 			uuRepo.deleteAll();
-			
 
-			
 			sRepo.save(new Survey("Testisurvey1"));
 			System.out.println("1");
 			qRepo.save(new Question("Mikä on nimesi?", 3, sRepo.findById((long) 1).get()));
@@ -62,9 +62,8 @@ public class KyselyBackApplication {
 			uaRepo.save(new UserAnswer("Pena", 3, qRepo.findById((long) 2).get(), asRepo.findById((long) 15).get()));
 			uaRepo.save(new UserAnswer("Arska", 3, qRepo.findById((long) 2).get(), asRepo.findById((long) 15).get()));
 			uaRepo.save(new UserAnswer(1, qRepo.findById((long) 4).get(), oRepo.findById((long) 9).get(), asRepo.findById((long) 15).get()));
-			
 			uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 15).get()));
-			
+			*/
 		};
 	}
 }
