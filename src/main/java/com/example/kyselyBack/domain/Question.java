@@ -17,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.kyselyBack.domain.QuestionRepository;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -29,7 +31,7 @@ public class Question {
 	private int type;
 	
 	
-	@JsonBackReference
+	
 	@ManyToOne
 	private Survey refQuestionSurvey;
 	

@@ -8,6 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Survey {
 
@@ -18,9 +23,11 @@ public class Survey {
 	private String name;
 	
 	@OneToMany(mappedBy = "refQuestionSurvey")
+	@JsonIgnore
 	private List<Question> questions;
 	
 	@OneToMany(mappedBy = "survey")
+	@JsonIgnore
 	private List<UniqueUserSession> uniqueUser;
 	
 	public Survey() {

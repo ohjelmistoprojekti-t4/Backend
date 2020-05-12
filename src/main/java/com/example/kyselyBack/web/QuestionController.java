@@ -43,8 +43,14 @@ public class QuestionController {
     @Autowired
     SurveyRepository sRepo;
     
+    
+    
+    //Custom method to save new question easier in front (frontEnd custom)//
+    
     @RequestMapping(value="/addQuestion", method = RequestMethod.POST)
-    Question newQuestion(@RequestBody String jsonString) {
+    Question newQuestion(@RequestBody String jsonString) { // <<---- String as a workaround because of a bug in spring
+    	
+    					// TODO: Solve bug and possibly fix this //
     	
     	Question q = new Question();
     	JSONObject obj = new JSONObject(jsonString);
@@ -63,21 +69,43 @@ public class QuestionController {
   	return q;
     }
     
-    @PutMapping("/putQuestion/{id}")
-    public Question replaceQuestion(@RequestBody Question replaceQuestion, @PathVariable Long id) {
-    	return qRepo.findById(id)
-    			.map(q -> {
-    				q.setQuestion(replaceQuestion.getQuestion());
-    				q.setOptions(replaceQuestion.getOptions());
-    				q.setType(replaceQuestion.getType());
-    				q.setSurvey(replaceQuestion.getSurvey());
-    				return qRepo.save(replaceQuestion);
-    			})
-    			.orElseGet(() -> {
-    				replaceQuestion.setId(id);
-    				return qRepo.save(replaceQuestion);
-    			});
+    
+    
+    //For custom PUT method, to update question and Options in same request (frontEnd custom)//
+    
+    @RequestMapping(value="/putQuestion/{id}", method = RequestMethod.PUT)
+    Question replaceQuestion1(@RequestBody Question newQuestion, @PathVariable Long id) {
+      return qRepo.findById(id)
+        .map(q -> {
+        	
+        	q.setQuestion(newQuestion.getQuestion());
+        	q.setType(newQuestion.getType());
+        	
+        	for (Option o : newQuestion.getOptions()) {
+        		Long optId = oRepo.findById(o.getOptionid()).get().getOptionid();
+        		oRepo.findById(o.getOptionid())
+        		.map(opt -> {
+        			opt.setOption(o.getOption());
+        			opt.setRefOptionQuestion(q);
+        			opt.setAnswers(uaRepo.findAllByRefAnswerOption(opt));
+        			return oRepo.save(opt);
+        		})
+        		.orElseGet(() -> {
+        	          o.setOptionid(optId);
+        	          return oRepo.save(o);
+        	        });
+        	}
+        	q.setOptions(oRepo.findByRefOptionQuestion(q));
+
+          return qRepo.save(q);
+        })
+        .orElseGet(() -> {
+          newQuestion.setId(id);
+          return qRepo.save(newQuestion);
+        });
     }
+    
+    
    
     @RequestMapping(value = "/getUserAnswers")
 	List<UserAnswer> getUserAnswers() {	
@@ -85,12 +113,16 @@ public class QuestionController {
 	}
     
     
-    
      
     @RequestMapping(value="/questions", method = RequestMethod.GET)
     public @ResponseBody List<Question> questionsRest() {
         return (List<Question>) qRepo.findAll();
     }
+    
+    
+    
+    
+    //List of unused custom endpoints tried in the past (to remind possible solutions)
     
    /*
     @RequestMapping(value="/questionsApi/{id}", method = RequestMethod.GET)
