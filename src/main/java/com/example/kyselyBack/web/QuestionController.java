@@ -22,6 +22,7 @@ import com.example.kyselyBack.domain.Option;
 import com.example.kyselyBack.domain.OptionRepository;
 import com.example.kyselyBack.domain.Question;
 import com.example.kyselyBack.domain.QuestionRepository;
+import com.example.kyselyBack.domain.Survey;
 import com.example.kyselyBack.domain.SurveyRepository;
 import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
@@ -48,7 +49,7 @@ public class QuestionController {
     //Custom method to save new question easier in front (frontEnd custom)//
     
     @RequestMapping(value="/addQuestion", method = RequestMethod.POST)
-    Question newQuestion(@RequestBody String jsonString) { // <<---- String as a workaround because of a bug in spring
+    Question newQuestion(@RequestBody String jsonString) { // <<---- String as a workaround because of a bug
     	
     					// TODO: Solve bug and possibly fix this //
     	
@@ -106,18 +107,33 @@ public class QuestionController {
     }
     
     
-   
-    @RequestMapping(value = "/getUserAnswers")
-	List<UserAnswer> getUserAnswers() {	
-		return (List<UserAnswer>) uaRepo.findAll();
-	}
     
+    //Custom endpoint returning every UserAnswer/ per survey requested 
+    
+    @RequestMapping(value = "/getUserAnswersBySurvey/{id}", method = RequestMethod.GET)
+    List <UserAnswer> getAllById(@PathVariable Long id) {
+    	List <UserAnswer> answerList = new ArrayList<>();
+    	
+    	for (Question q : qRepo.findAllByRefQuestionSurvey(sRepo.findOneById(id))) {
+    		for (UserAnswer ua : uaRepo.findAllByRefAnswerQuestion(q)) {
+    			answerList.add(ua);
+    		}
+    	}
+    	
+    	return answerList;
+    }
     
      
     @RequestMapping(value="/questions", method = RequestMethod.GET)
     public @ResponseBody List<Question> questionsRest() {
         return (List<Question>) qRepo.findAll();
     }
+    
+    
+    @RequestMapping(value = "/getUserAnswers")
+	List<UserAnswer> getUserAnswers() {	
+		return (List<UserAnswer>) uaRepo.findAll();
+	}
     
     
     
