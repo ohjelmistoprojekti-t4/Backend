@@ -8,6 +8,7 @@ import com.example.kyselyBack.domain.Question;
 
 public interface QuestionRepository extends CrudRepository <Question, Long> {
 	List<Question> findByQuestion(String question);
+	List<Question> findAllByRefQuestionSurvey(Survey survey);
 	Question findOneByQuestion(String question);
 	
 	
