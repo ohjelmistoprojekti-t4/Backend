@@ -45,10 +45,10 @@ public class KyselyBackApplication {
 			asRepo.deleteAll();
 			uuRepo.deleteAll();
 			usRepo.deleteAll();
-			*/
+			
 			usRepo.save(new User("User", "Secret", new String[] {"ROLE_USER"}));
 			usRepo.save(new User("Administrator", "Nimda", new String[] {"ROLE_USER", "ROLE_ADMIN"}));
-			/*
+			
 			sRepo.save(new Survey("Testisurvey1"));
 			System.out.println("1");
 			qRepo.save(new Question("Mikä on nimesi?", 3, sRepo.findById((long) 1).get()));
