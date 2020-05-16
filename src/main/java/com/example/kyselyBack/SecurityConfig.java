@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.stereotype.Component;
 
-import com.example.kyselyBack.domain.User;
+import com.example.kyselyBack.domain.EndUser;
 
 @Component
 @EnableWebSecurity
@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(detailsService).passwordEncoder(User.PASSWORD_ENCODER);
+        auth.userDetailsService(detailsService).passwordEncoder(EndUser.PASSWORD_ENCODER);
     }
 
     @Override

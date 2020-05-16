@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.kyselyBack.domain.AnswerSet;
 import com.example.kyselyBack.domain.AnswerSetRepository;
+import com.example.kyselyBack.domain.EndUserRepository;
 import com.example.kyselyBack.domain.Option;
 import com.example.kyselyBack.domain.OptionRepository;
 import com.example.kyselyBack.domain.Question;
@@ -17,10 +18,10 @@ import com.example.kyselyBack.domain.Survey;
 import com.example.kyselyBack.domain.SurveyRepository;
 import com.example.kyselyBack.domain.UniqueUserSession;
 import com.example.kyselyBack.domain.UniqueUserSessionRepository;
-import com.example.kyselyBack.domain.User;
+import com.example.kyselyBack.domain.EndUser;
 import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
-import com.example.kyselyBack.domain.UserRepository;
+import com.example.kyselyBack.domain.EndUserRepository;
 
 @SpringBootApplication
 public class KyselyBackApplication {
@@ -33,7 +34,7 @@ public class KyselyBackApplication {
 
 	public CommandLineRunner example(QuestionRepository qRepo, OptionRepository oRepo, 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, 
-			UniqueUserSessionRepository uuRepo, UserRepository usRepo) {
+			UniqueUserSessionRepository uuRepo, EndUserRepository euRepo) {
 
 
 		return(args) -> {
@@ -44,10 +45,14 @@ public class KyselyBackApplication {
 			uaRepo.deleteAll();
 			asRepo.deleteAll();
 			uuRepo.deleteAll();
-			usRepo.deleteAll();
+			euRepo.deleteAll();
+			*/
 			
-			usRepo.save(new User("User", "Secret", new String[] {"ROLE_USER"}));
-			usRepo.save(new User("Administrator", "Nimda", new String[] {"ROLE_USER", "ROLE_ADMIN"}));
+			euRepo.save(new EndUser("User", "Secret", new String[] {"ROLE_USER"}));
+			euRepo.save(new EndUser("Administrator", "Nimda", new String[] {"ROLE_USER", "ROLE_ADMIN"}));
+			
+			
+			/*
 			
 			sRepo.save(new Survey("Testisurvey1"));
 			System.out.println("1");

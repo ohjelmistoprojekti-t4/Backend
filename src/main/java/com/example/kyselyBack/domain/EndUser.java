@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class User  {
+public class EndUser  {
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
     
@@ -24,11 +24,11 @@ public class User  {
     @JsonIgnore
     private String[] roles;
 
-    public User() {
+    public EndUser() {
         super();
     }
 
-    public User(String username, String password, String[] roles) {
+    public EndUser(String username, String password, String[] roles) {
         
         this.username = username;
         setPassword(password);

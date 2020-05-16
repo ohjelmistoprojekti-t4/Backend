@@ -7,19 +7,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.example.kyselyBack.domain.User;
-import com.example.kyselyBack.domain.UserRepository;
+import com.example.kyselyBack.domain.EndUser;
+import com.example.kyselyBack.domain.EndUserRepository;
 
 @Component
 public class UDService implements UserDetailsService {
 
     @Autowired
-    UserRepository uRepo;
+    EndUserRepository uRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = uRepo.findByUsername(username);
+    	EndUser user = uRepo.findByUsername(username);
         if (user == null){
             throw new UsernameNotFoundException("Käyttäjää " + username + " ei löytynyt.");
         }
