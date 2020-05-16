@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.kyselyBack.domain.AdminRepository;
 import com.example.kyselyBack.domain.AnswerSet;
 import com.example.kyselyBack.domain.AnswerSetRepository;
 import com.example.kyselyBack.domain.Option;
@@ -31,7 +32,7 @@ public class KyselyBackApplication {
 
 	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, 
-			UniqueUserSessionRepository uuRepo) {
+			UniqueUserSessionRepository uuRepo, AdminRepository adRepo) {
 
 		return(args) -> {
 			/*
@@ -41,8 +42,9 @@ public class KyselyBackApplication {
 			uaRepo.deleteAll();
 			asRepo.deleteAll();
 			uuRepo.deleteAll();
-
-			sRepo.save(new Survey("Testisurvey1"));
+			
+			adRepo.save(new Admin("admin", "password", "ADMIN"));
+			sRepo.save(new Survey("Testisurvey1"), adRepo.findByUserName("admin").get(0));
 			System.out.println("1");
 			qRepo.save(new Question("Mikä on nimesi?", 3, sRepo.findById((long) 1).get()));
 			qRepo.save(new Question("Valitse oikeat vaihtoehdot", 2, sRepo.findById((long) 1).get()));
