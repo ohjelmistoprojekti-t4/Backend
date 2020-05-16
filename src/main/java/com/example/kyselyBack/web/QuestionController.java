@@ -7,10 +7,18 @@ import java.util.List;
 import org.json.*;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -135,7 +143,36 @@ public class QuestionController {
 		return (List<UserAnswer>) uaRepo.findAll();
 	}
     
+    @RequestMapping(value="/authorized", method = RequestMethod.GET)
+    public boolean login (HttpServletRequest request, HttpServletResponse response) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	if (auth != null){
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
     
+    @RequestMapping(value="/api/logout", method = RequestMethod.GET)
+    public boolean logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    		
+    	if (auth != null){
+    		new SecurityContextLogoutHandler().logout(request, response, auth);
+    	}
+    	
+    	HttpSession session= request.getSession(false);
+    	SecurityContextHolder.clearContext();
+        session= request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
+        for(Cookie cookie : request.getCookies()) {
+            cookie.setMaxAge(0);
+        }
+    return true;
+    }
     
     
     //List of unused custom endpoints tried in the past (to remind possible solutions)
