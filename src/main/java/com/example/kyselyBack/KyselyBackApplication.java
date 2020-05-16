@@ -17,8 +17,10 @@ import com.example.kyselyBack.domain.Survey;
 import com.example.kyselyBack.domain.SurveyRepository;
 import com.example.kyselyBack.domain.UniqueUserSession;
 import com.example.kyselyBack.domain.UniqueUserSessionRepository;
+import com.example.kyselyBack.domain.User;
 import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
+import com.example.kyselyBack.domain.UserRepository;
 
 @SpringBootApplication
 public class KyselyBackApplication {
@@ -29,9 +31,9 @@ public class KyselyBackApplication {
 	
 	@Bean
 
-	public CommandLineRunner exampleQuestion(QuestionRepository qRepo, OptionRepository oRepo, 
+	public CommandLineRunner example(QuestionRepository qRepo, OptionRepository oRepo, 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, 
-			UniqueUserSessionRepository uuRepo) {
+			UniqueUserSessionRepository uuRepo, UserRepository usRepo) {
 
 		return(args) -> {
 			
@@ -41,6 +43,10 @@ public class KyselyBackApplication {
 			uaRepo.deleteAll();
 			asRepo.deleteAll();
 			uuRepo.deleteAll();
+			usRepo.deleteAll();
+			
+			usRepo.save(new User("User", "Secret", new String[] {"ROLE_USER"}));
+			usRepo.save(new User("Administrator", "Nimda", new String[] {"ROLE_USER", "ROLE_ADMIN"}));
 
 			sRepo.save(new Survey("Testisurvey1"));
 			System.out.println("1");
