@@ -144,9 +144,9 @@ public class QuestionController {
 		return (List<UserAnswer>) uaRepo.findAll();
 	}
     
-    @RequestMapping(value="/authorized", method = RequestMethod.GET)
-    public boolean login (HttpServletRequest request, HttpServletResponse response) {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    @RequestMapping(value="/authorized", method = RequestMethod.POST)
+    public boolean login () {
+    	
     	
     	return true;
     }
