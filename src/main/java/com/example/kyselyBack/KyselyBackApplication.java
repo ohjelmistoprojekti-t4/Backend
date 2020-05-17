@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.example.kyselyBack.domain.AnswerSet;
 import com.example.kyselyBack.domain.AnswerSetRepository;
@@ -31,7 +32,6 @@ public class KyselyBackApplication {
 	}
 	
 	@Bean
-
 	public CommandLineRunner example(QuestionRepository qRepo, OptionRepository oRepo, 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, 
 			UniqueUserSessionRepository uuRepo, EndUserRepository euRepo) {
