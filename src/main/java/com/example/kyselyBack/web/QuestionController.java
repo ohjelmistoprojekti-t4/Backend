@@ -38,7 +38,6 @@ import com.example.kyselyBack.domain.UserAnswersRepository;
 
 @Controller
 @ResponseBody
-@CrossOrigin("*")
 public class QuestionController {
  
    
