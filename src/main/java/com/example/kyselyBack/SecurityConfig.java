@@ -28,9 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.headers()
-        .defaultsDisabled()
-        .and()
+        http
         	.authorizeRequests()
             .antMatchers(HttpMethod.GET, "/**").permitAll()
             .antMatchers(HttpMethod.GET, "/getUserAnswersBySurvey/**").permitAll()
