@@ -147,11 +147,7 @@ public class QuestionController {
     public boolean login (HttpServletRequest request, HttpServletResponse response) {
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	
-    	if (auth != null){
-    		return true;
-    	} else {
-    		return false;
-    	}
+    	return true;
     }
     
     @RequestMapping(value="/api/logout", method = RequestMethod.GET)

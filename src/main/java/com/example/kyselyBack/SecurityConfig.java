@@ -28,30 +28,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        	.csrf().disable()
         	.authorizeRequests()
             .antMatchers(HttpMethod.GET, "/**").permitAll()
         .and()
+        	.csrf().disable()
         	.authorizeRequests()
         	.antMatchers(HttpMethod.GET, "/getUserAnswersBySurvey/**").permitAll()
         .and()
+        	.csrf().disable()
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/api/userAnswers").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/userAnswers", "/api/answerSets", "/api/uniqueUserSessions").permitAll()
         .and()
-            .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/api/answerSets").permitAll()
-        .and()
-            .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/api/uniqueUserSessions").permitAll()
-        .and()
+        	.csrf().disable()
             .authorizeRequests()
             .antMatchers("/api/endUsers").hasAuthority("ROLE_ADMIN")
         .and()
+        	.csrf().disable()
             .authorizeRequests().anyRequest().hasAuthority("ROLE_ADMIN")
 		.and()
 			.httpBasic()
 			.authenticationEntryPoint(authEntryPoint)
-        .and()
-        	.csrf().disable();
+		.and()
+			.csrf().disable();
                 
                 
     }
