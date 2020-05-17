@@ -2,6 +2,7 @@ package com.example.kyselyBack.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,11 +25,11 @@ public class Survey {
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "refQuestionSurvey")
+	@OneToMany(mappedBy = "refQuestionSurvey", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Question> questions;
 	
-	@OneToMany(mappedBy = "survey")
+	@OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<UniqueUserSession> uniqueUser;
 	
