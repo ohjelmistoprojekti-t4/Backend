@@ -6,23 +6,26 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 import com.example.kyselyBack.domain.AnswerSet;
 import com.example.kyselyBack.domain.AnswerSetRepository;
-import com.example.kyselyBack.domain.EndUserRepository;
+
 import com.example.kyselyBack.domain.Option;
 import com.example.kyselyBack.domain.OptionRepository;
+
 import com.example.kyselyBack.domain.Question;
 import com.example.kyselyBack.domain.QuestionRepository;
+
 import com.example.kyselyBack.domain.Survey;
 import com.example.kyselyBack.domain.SurveyRepository;
+
 import com.example.kyselyBack.domain.UniqueUserSession;
 import com.example.kyselyBack.domain.UniqueUserSessionRepository;
-import com.example.kyselyBack.domain.EndUser;
+
 import com.example.kyselyBack.domain.UserAnswer;
 import com.example.kyselyBack.domain.UserAnswersRepository;
-import com.example.kyselyBack.domain.EndUserRepository;
+
 
 @SpringBootApplication
 public class KyselyBackApplication {
@@ -34,7 +37,7 @@ public class KyselyBackApplication {
 	@Bean
 	public CommandLineRunner example(QuestionRepository qRepo, OptionRepository oRepo, 
 			UserAnswersRepository uaRepo, SurveyRepository sRepo, AnswerSetRepository asRepo, 
-			UniqueUserSessionRepository uuRepo, EndUserRepository euRepo) {
+			UniqueUserSessionRepository uuRepo) {
 
 
 		return(args) -> {
