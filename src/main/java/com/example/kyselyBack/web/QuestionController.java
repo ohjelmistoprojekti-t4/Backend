@@ -132,6 +132,16 @@ public class QuestionController {
     	return answerList;
     }
     
+
+    
+    
+    
+    
+    
+    //List of unused custom endpoints tried in the past (to remind possible solutions)
+    
+   /*
+    
      
     @RequestMapping(value="/questions", method = RequestMethod.GET)
     public @ResponseBody List<Question> questionsRest() {
@@ -144,37 +154,6 @@ public class QuestionController {
 		return (List<UserAnswer>) uaRepo.findAll();
 	}
     
-    @RequestMapping(value="/authorized", method = RequestMethod.POST)
-    public boolean login () {
-    	
-    	
-    	return true;
-    }
-    
-    @RequestMapping(value="/api/logout", method = RequestMethod.GET)
-    public boolean logoutPage (HttpServletRequest request, HttpServletResponse response) {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    		
-    	if (auth != null){
-    		new SecurityContextLogoutHandler().logout(request, response, auth);
-    	}
-    	
-    	HttpSession session= request.getSession(false);
-    	SecurityContextHolder.clearContext();
-        session= request.getSession(false);
-        if(session != null) {
-            session.invalidate();
-        }
-        for(Cookie cookie : request.getCookies()) {
-            cookie.setMaxAge(0);
-        }
-    return true;
-    }
-    
-    
-    //List of unused custom endpoints tried in the past (to remind possible solutions)
-    
-   /*
     @RequestMapping(value="/questionsApi/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("id") Long id) {
         return qRepo.findById(id);
