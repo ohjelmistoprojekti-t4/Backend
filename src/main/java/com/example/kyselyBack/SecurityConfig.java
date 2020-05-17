@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .antMatchers(HttpMethod.GET, "/**").permitAll()
             .antMatchers(HttpMethod.GET, "/getUserAnswersBySurvey/**").permitAll()
             .antMatchers("/api/userAnswers", "/api/answerSets", "/api/uniqueUserSessions").permitAll()
-            .antMatchers("/api/endUsers", "/authorized").authenticated()
+            .antMatchers("/api/endUsers", "/authorized").fullyAuthenticated()
             .anyRequest().authenticated()
 		.and()
 			.httpBasic()
