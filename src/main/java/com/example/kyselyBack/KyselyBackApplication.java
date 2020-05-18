@@ -41,7 +41,7 @@ public class KyselyBackApplication {
 
 
 		return(args) -> {
-			/*
+			
 			sRepo.deleteAll();
 			oRepo.deleteAll();
 			qRepo.deleteAll();
@@ -70,7 +70,7 @@ public class KyselyBackApplication {
 			uaRepo.save(new UserAnswer("Arska", 3, qRepo.findById((long) 2).get(), asRepo.findById((long) 15).get()));
 			uaRepo.save(new UserAnswer(1, qRepo.findById((long) 4).get(), oRepo.findById((long) 9).get(), asRepo.findById((long) 15).get()));
 			uuRepo.save(new UniqueUserSession(sRepo.findById((long) 1).get(), asRepo.findById((long) 15).get()));
-			*/
+			
 		};
 	}
 }
