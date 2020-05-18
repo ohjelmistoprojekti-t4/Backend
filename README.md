@@ -5,19 +5,19 @@
 Taulujen nimet: questions, options, surveys, userAnswers, answerSets uniqueUserSessions
 ## POST
 /addQuestion voi lisätä kysymyksen muodossa:<br>
-{
-    "question" : "Kysymys",<br>
-    "survey" : {<br>
-        "surveyId" : 1,<br>
-        "name" : "Testisurvey1"<br>
-    },<br>
-    "type" : 1<br>
-    "options" : {<br>
-        "option1": "Kyllä",<br>
-        "option2" : "Ehkä",<br>
-        "option3" : "Ei"<br>
-    }<br>
-}
+>{
+>>"question" : "Kysymys",<br>
+>>"survey" : {<br>
+>>>"surveyId" : 1,<br>
+>>>"name" : "Testisurvey1"<br>
+>>},<br>
+>>"type" : 1<br>
+>>"options" : {<br>
+>>>"option1": "Kyllä",<br>
+>>>"option2" : "Ehkä",<br>
+>>>"option3" : "Ei"<br>
+>>}<br>
+>}
 
 **HUOM** type attribuutti on määritelty seuraavanlaisesti: 1 = radio-monivalinta, 2 = checkbox-monivalinta ja 3 = vapaamuotoinen kysymys/teksti kysymys.
 
