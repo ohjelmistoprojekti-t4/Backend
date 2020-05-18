@@ -30,8 +30,6 @@ public class AnswerSet {
 	public AnswerSet() {
 		super();
 	}
-	
-	
 
 	public AnswerSet(List<UserAnswer> userAnswers) {
 		super();
