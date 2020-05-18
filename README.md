@@ -1,36 +1,121 @@
-# Backend
+# Tiimi 4 REST API Dokumentaatio
 
-[API link here](https://team4back.herokuapp.com/api/)
+[Linkki apiin](https://team4back.herokuapp.com/api/)
 
-## GET  
-/api -- kaikki taulut<br>
-/api/**taulunnimi** ilman hipsuja<br>
-Taulujen nimet: questions, options, surveys, userAnswers, answerSets uniqueUserSessions
-## POST
-/addQuestion voi lisätä kysymyksen muodossa:<br>
+## DATABASE
+#### Taulujen nimet:
+**questions** -- (Kysymys-objektit),<br>
+**options** -- (Kysymyksissä käytetyt vaihtoehto-objektit),<br> 
+**surveys** -- (Kysely-objektit),<br> 
+**userAnswers** -- (Käyttäjän vastaus kysymykseen -objektit),<br>
+**answerSets** -- (Objektit, joihin tallennetaan käyttäjän vastaukset sekä vastaajan sessio-objekti),<br> 
+**uniqueUserSessions** -- (Vastaajan sessio-objektit)<br>
+
+## GET
+#### Spring Data REST vakiokäytännöt
+/api&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -- Näyttää kaikki taulut<br>
+/api/**taulunnimi**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -- Näyttää taulukohtaisen datan ja/tai linkit liittyviin tauluihin<br><br>
+Käyttöesimerkki: /api/questions<br>
+**Palauttaa:**<br>
+```json
 {
-    "question" : "Kysymys",<br>
-    "survey" : {<br>
-        "surveyId" : 1,<br>
-        "name" : "Testisurvey1"<br>
-    },<br>
-    "type" : 1<br>
-    "options" : {<br>
-        "option1": "Kyllä",<br>
-        "option2" : "Ehkä",<br>
-        "option3" : "Ei"<br>
-    }<br>
-}
+  "_embedded" : {
+    "questions" : [ {
+      "id" : 3062,
+      "question" : "avoin1",
+      "type" : 3,
+      "survey" : {
+        "id" : 3061,
+        "name" : "Kysely1"
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://team4back.herokuapp.com/api/questions/3062"
+        },
+        "question" : {
+          "href" : "https://team4back.herokuapp.com/api/questions/3062"
+        },
+        "answers" : {
+          "href" : "https://team4back.herokuapp.com/api/questions/3062/answers"
+        },
+        "refQuestionSurvey" : {
+          "href" : "https://team4back.herokuapp.com/api/questions/3062/refQuestionSurvey"
+        },
+        "options" : {
+          "href" : "https://team4back.herokuapp.com/api/questions/3062/options"
+        }
+      }
+    }, {
+    ... seuraavan kysymyksen data 
+    }, jne....
+```
+<br>
+    
+#### Custom GET endpoint
+**/getUserAnswerBySurvey/{id}** -- 
+Voi hakea kaikki tiettyyn kyselyyn liitetyt käyttäjien vastaukset<br><br>
 
-**HUOM** type attribuutti on määritelty seuraavanlaisesti: 1 = radio-monivalinta, 2 = checkbox-monivalinta ja 3 = vapaamuotoinen kysymys/teksti kysymys.
+    
+
+## POST
+#### Spring Data REST vakiokäytännöt
+/api/**taulunnimi** &nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp;&nbsp; Luo objektin tietokantaan konstruktorien mukaisesti<br>
+#### Custom POST endpoint
+
+**/addQuestion** voi lisätä kysymyksen sekä vaihtoehdot samanaikaisesti muodossa:<br>
+```
+{
+	"question" : "Kysymys01",
+	"survey" : {
+		"surveyId" : 1,
+		"name" : "Survey01"
+	},
+	"type" : 1
+	"options" : {
+		"option1": "Kyllä",
+		"option2" : "Ehkä",
+		"option3" : "Ei"
+	}
+}
+```
+
+**HUOM** type attribuutti on määritelty seuraavanlaisesti:<br><br>
+1 = radio-monivalinta,<br>
+2 = checkbox-monivalinta,<br>
+3 = vapaamuotoinen tekstikenttäkysymys.
+<br><br>
 
 ## PUT
-/putQuestion/id
+#### Spring Data REST vakiokäytännöt
+/api/**taulunnimi** &nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp;&nbsp;Lähettämällä uuden objektin voi muokata olemassa olevaa<br><br>
+#### Custom PUT endpoint
+**/putQuestion/id** voi muokata sekä kysymystä, että vaihtoehtoja samalla kutsulla muodossa:<br>
+```
+{
+    "id": 4,
+    "question": "Ollakko vai eikö olla?",
+    "type": 1,
+	"options": [
+		{
+			"optionid": 9,
+			"option" : "Siinäpä"
+		},
+		{
+			"optionid": 10,
+			"option" : "Vasta"
+		},
+		{
+			"optionid": 11,
+			"option" : "Pulma"
+		}
+	]
+}
+```
+<br><br>
 
 ## DELETE
-/api/**taulunnimi**/id
+#### Spring Data REST vakiokäytännöt
+/api/**taulunnimi**/{id}&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp;&nbsp; Poistaa objektin tietokannasta id:n perusteella<br><br>
 
-## Custom endpoints
-/getUserAnswerBySurvey/id
 
-Voi hakea kaikki kyselyn vastaukset per. käyttäjä Id:n perusteella
+##
