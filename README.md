@@ -4,7 +4,7 @@
 [Linkki react-sovellukseen joka käyttää tätä apia](https://team4front.herokuapp.com/)
 
 ## DATABASE
-
+![Luokkakaavio](https://github.com/ohjelmistoprojekti-t4/Backend/tree/master/img/luokkakaavio-v1_4.png
 
 #### Taulujen nimet:
 **questions** -- (Kysymys-objektit),<br>
