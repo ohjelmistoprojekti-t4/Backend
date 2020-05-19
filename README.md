@@ -1,8 +1,12 @@
 # Tiimi 4 REST API Dokumentaatio
 
 [Linkki apiin](https://team4back.herokuapp.com/api/)
+[Linkki react-sovellukseen joka käyttää tätä apia](https://team4front.herokuapp.com/)
 
 ## DATABASE
+![Luokkakaavio](https://github.com/ohjelmistoprojekti-t4/Backend/tree/master/readme%20img/Tiimi4 - Luokkakaavio - v1_4.png
+
+
 #### Taulujen nimet:
 **questions** -- (Kysymys-objektit),<br>
 **options** -- (Kysymyksissä käytetyt vaihtoehto-objektit),<br> 
